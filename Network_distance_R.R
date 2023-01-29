@@ -26,8 +26,8 @@ network_1_distances <- network_1 %>%
 # histogram of first neighbours and distances
 network_1_distances %>% ggplot(aes(x=distance)) + 
   geom_histogram(binwidth = 50) + geom_density(aes(y=50 * ..count..), colour = "blue") +
-  xlab("distance") + ylab("count")
-ggsave("export/means_network_1_firstneighbours_hist_density.png")
+  xlab("Spatial distance") + ylab("Number of nodes")
+ggsave("export/means_network_1_firstneighbours_hist_density.jpg", dpi=600)
 
 #average distances of first neigbours
 node_avg_distance <- network_1_distances %>% 
@@ -40,8 +40,9 @@ write.csv(node_avg_distance,"export/node_avg_distance.csv")
 # add data with imported material
 transported <- read.csv("data/TransportedMaterial.csv")
 
-transported %>% ggplot(aes(y=Transport)) + geom_bar()
-ggsave("export/transported_bar.png")
+transported %>% ggplot(aes(y=Transport)) + geom_bar() + 
+  xlab("Number of nodes") + ylab("")
+ggsave("export/transported_bar.jpg", dpi=600)
 
 # start Cytoscape (check Batch-file after update Cytoscape)
 system("Cytoscape.bat")
